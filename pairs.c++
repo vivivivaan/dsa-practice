@@ -81,6 +81,4 @@ int main() {
   for (auto &i : demo) {
     std::cout << i.first << " " << i.second << std::endl;
   }
-
-  return 0;
 }

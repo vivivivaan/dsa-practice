@@ -62,6 +62,4 @@ int main() {
 
   std::cout << "\ns1 size now: " << s1.size() << " , s2 size now: " << s2.size()
             << std::endl;
-
-  return 0;
 }

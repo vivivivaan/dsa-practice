@@ -23,8 +23,6 @@ int main() {
   }
   std::cout << std::endl;
 
-  // Remaining all methods are same as in stack. 
+  // Remaining all methods are same as in stack.
   // emplace(), swap(), back() is to display last element.
-
-  return 0;
 }

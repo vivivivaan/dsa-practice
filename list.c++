@@ -44,5 +44,4 @@ int main() {
   // Majority of the remaining functions are all same as std::vector.
   // Examples: .size(), erase(), clear(), begin(), end(), rbegin(), rend(),
   // insert, front(), back()
-  return 0;
 }
