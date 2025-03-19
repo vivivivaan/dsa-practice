@@ -6,6 +6,7 @@ int main() {
   std::vector<int> nums;
 
   // vector.push_back()
+  std::cout << "Nums: ";
   for (int i = 1; i <= 7; i++) {
     nums.push_back(i * 10);
   }
