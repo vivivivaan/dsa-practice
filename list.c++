@@ -3,6 +3,7 @@
 
 // List is a sequential container like Vector.
 // List is internally implemented as Doubly Linked List.
+// Random access is not possible.
 // Push, Pop and Emplace is possible from both front & back.
 
 int main() {

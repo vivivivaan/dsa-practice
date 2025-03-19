@@ -1,6 +1,8 @@
 #include <iostream>
 #include <vector>
 
+// Vector is a sequential container.
+
 int main() {
 
   std::vector<int> nums;
