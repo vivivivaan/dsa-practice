@@ -28,4 +28,33 @@ int main() {
           {{'a', {'b', 'c', 'd'}},
            {1, 2, 3}} // First pair with char, vector<char> and vector<int>
       };
+
+  // Outermost pair first part.
+  std::cout << "First part of the outermost pair<>: " << std::endl;
+  std::cout << "pair(vec(pair(pair(ch,ch), vec(int)), ): ";
+  for (auto &i : vals.first) {
+    std::cout << i.first.first << ", " << i.first.second << std::endl;
+    std::cout << "Vector of ints: [";
+    for (auto &j : i.second) {
+      std::cout << j << ", ";
+    }
+  }
+  std::cout << "]" << std::endl;
+
+  // Outermost pair second part.
+  std::cout << "Second part of the outermost pair<>: " << std::endl;
+  std::cout << "pair(, pair(pair(ch,vec(ch)), vec(int))): "
+            << vals.second.first.first << " | [";
+  for (auto &x : vals.second.first.second) {
+    std::cout << x << ", ";
+  }
+  std::cout << "]" << std::endl;
+
+  std::cout << "Second element of the outer pair - vec(int): ";
+  for (auto &x : vals.second.second) {
+    std::cout << x << ", ";
+  }
+  std::cout << std::endl;
+
+  return 0;
 }
