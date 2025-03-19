@@ -56,5 +56,31 @@ int main() {
   }
   std::cout << std::endl;
 
+  std::vector<std::pair<int, int>> demo{{10, 15}, {20, 25}, {30, 35}};
+  std::cout << "Initial demo vector of pairs: " << std::endl;
+  for (auto i = demo.begin(); i != demo.end(); i++) {
+    std::cout << i->first << " " << i->second << std::endl;
+  }
+  std::cout << "push_back demo: " << std::endl;
+  // push_back assumes that the object is
+  // already created and simply inserts it.
+  for (int i = 1; i <= 5; i++) {
+    demo.push_back({i, i / 2});
+  }
+  for (auto &i : demo) {
+    std::cout << i.first << " " << i.second << std::endl;
+  }
+
+  // emplace_back creates in-place objects,
+  // that is, it creates the objects for us.
+  // More efficient compared to push_back.
+  std::cout << "emplace_back demo: " << std::endl;
+  for (int j = 5; j <= 10; j++) {
+    demo.emplace_back(j, j * 5);
+  }
+  for (auto &i : demo) {
+    std::cout << i.first << " " << i.second << std::endl;
+  }
+
   return 0;
 }
