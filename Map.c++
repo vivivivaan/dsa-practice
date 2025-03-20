@@ -14,7 +14,7 @@ int main() {
   dict["height"] = 177;
   dict["weight"] = 70;
   dict["yob"] = 1999;
-  dict["bmi"] = 22.1;
+  dict["bmi"] = 22;
 
   for (auto &x : dict) {
     std::cout << x.first << " : " << x.second << std::endl;
