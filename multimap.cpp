@@ -1,5 +1,6 @@
 // Same as map but can have duplicate keys.
 // [] can't be used, insert() or emplace() is used to add data.
+// O(log_n) as it is internally implemented as self-balancing tree.
 
 #include <iostream>
 #include <map>
