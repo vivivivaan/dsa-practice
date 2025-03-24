@@ -183,6 +183,10 @@ public:
       len--;
     }
   }
+
+  void reverse() {}
+
+  void merge(Node *node1, Node *node2) {}
 };
 
 int main() {
