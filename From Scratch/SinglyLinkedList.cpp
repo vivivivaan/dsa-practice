@@ -122,71 +122,65 @@ public:
     }
   }
 
-  // Retrieval at index is possible which starts from 0 to len - 1.
-  // But, retrieval at length valued index is not possible as that
-  // node and consequently, index doesn't exist yet.
+  // Retrieves the node at 'index'. Valid indices: 0 (head) to len-1 (tail).
+  // Returns nullptr if index is invalid (negative or >= len).
   Node *get(int index) {
-    if (index < 0 || index >= len) {
-      return nullptr;
-    } else if (index == 0) {
-      return getHead();
-    } else if (index == len - 1) {
-      return getTail();
-    } else {
+    if (index < 0 || index >= len)
+      return nullptr; // Out of bounds
+    else if (index == 0)
+      return head; // Optimized head access
+    else if (index == len - 1)
+      return tail; // Optimized tail access
+    else {         // Traverse middle nodes
       Node *temp = head;
-      for (int i = 1; i < index; i++) {
+      for (int i = 1; i < index; i++)
         temp = temp->next;
-      }
       return temp;
     }
   }
 
+  // Updates data at 'index'. Uses get() to validate the index.
   bool set(int index, int data) {
     Node *node = get(index);
-    if (node != nullptr) {
+    if (node)
       node->data = data;
-      return true;
-    }
-    return false;
+    return node != nullptr; // True if index was valid
   }
 
-  // Insertion at the length valued index essentially means appending.
-  // So, the index can be length value but never below or beyond length.
+  // Inserts a new node at 'index'. Valid indices: 0 (prepend) to len (append).
+  // Returns false if index is invalid (negative or > len).
   bool insert(int index, int data) {
-    if (index < 0 || index > len) {
-      return false;
-    } else if (index == 0) {
-      prepend(data);
-      return true;
-    } else if (index == len) {
-      append(data);
-      return true;
-    } else {
-      Node *node = new Node(data);
-      Node *temp = get(index - 1);
-      node->next = temp->next;
-      temp->next = node;
+    if (index < 0 || index > len)
+      return false; // Invalid position
+    else if (index == 0)
+      prepend(data); // Case: New head
+    else if (index == len)
+      append(data);                // Case: New tail
+    else {                         // Case: Middle insertion
+      Node *prev = get(index - 1); // Get node before insertion point
+      Node *newNode = new Node(data);
+      newNode->next = prev->next;
+      prev->next = newNode;
       len++;
-      return true;
     }
+    return true;
   }
 
-  // Deletion at 0th index or 1st node is pop_head() or pop_tail() if index is
-  // len - 1. But index can't be equal to length as that node doesn't exist yet.
-  
-  bool del(int index) {
-    if (index < 0 || index >= len) {
-      return false;
-    }
-    else if (index == 0) {
-      pop_head();
-      return true;
-    }
-    else if (index == len-1) {
-      pop_tail();
-      return false;
-    } else {
-      Node* 
+  // Deletes the node at 'index'. Valid indices: 0 (head) to len-1 (tail).
+  // No-op if index is invalid (negative or >= len).
+  void del(int index) {
+    if (index < 0 || index >= len)
+      return; // Invalid index
+    else if (index == 0)
+      pop_head(); // Case: Remove head
+    else if (index == len - 1)
+      pop_tail(); // Case: Remove tail
+    else {        // Case: Remove middle node
+      Node *prev = get(index - 1);
+      Node *target = prev->next;
+      prev->next = target->next;
+      delete target;
+      len--;
     }
   }
 };
@@ -256,6 +250,14 @@ int main() {
   std::cout << "The linkedlist is: ";
   ll->print_linkedlist();
   std::cout << std::endl << std::endl;
+
+  std::cout
+      << "Deleting the previously added 750 data in 4th node or index [3].."
+      << std::endl;
+  ll->del(4);
+  std::cout << "The linkedlist is: ";
+  ll->print_linkedlist();
+  std::cout << " and length is " << ll->length() << std::endl << std::endl;
 
   delete ll;
 }
