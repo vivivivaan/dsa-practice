@@ -1,4 +1,5 @@
 #include <iostream>
+#include <utility>
 
 class Node {
 public:
@@ -188,7 +189,27 @@ public:
     }
   }
 
-  void reverse() {}
+  void reverse() {
+    if (len == 0 || len == 1) {
+      return;
+    } else {
+      // Swap head & tail.
+      Node *temp = head;
+      head = tail;
+      tail = temp;
+
+      // Swap the remaining nodes between head and tail.
+      Node *after = temp->next;
+      Node *before = nullptr;
+
+      for (int i = 0; i < len; i++) {
+        after = temp->next;
+        temp->next = before;
+        before = temp;
+        temp = after;
+      }
+    }
+  }
 
   void merge(Node *node1, Node *node2) {}
 };
@@ -266,6 +287,14 @@ int main() {
   std::cout << "The linkedlist is: ";
   ll->print_linkedlist();
   std::cout << " and length is " << ll->length() << std::endl << std::endl;
+
+  std::cout << "Reversing the linked list.." << std::endl;
+  ll->reverse();
+  std::cout << "The linkedlist is: ";
+  ll->print_linkedlist();
+  std::cout << " | Head: " << ll->getHead()->data
+            << " | Tail: " << ll->getTail()->data << std::endl
+            << std::endl;
 
   delete ll;
 }
