@@ -46,6 +46,10 @@ public:
 
   Node *getTail() { return tail; }
 
+  void setHead(int data) { head->data = data; }
+
+  void setTail(int data) { tail->data = data; }
+
   void print_linkedlist() {
     Node *node = head;
     if (node == nullptr) {
@@ -128,9 +132,9 @@ public:
     if (index < 0 || index >= len)
       return nullptr; // Out of bounds
     else if (index == 0)
-      return head; // Optimized head access
+      return head; // head access
     else if (index == len - 1)
-      return tail; // Optimized tail access
+      return tail; // tail access
     else {         // Traverse middle nodes
       Node *temp = head;
       for (int i = 1; i < index; i++)
