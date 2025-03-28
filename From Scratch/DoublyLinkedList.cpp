@@ -19,6 +19,8 @@ private:
   int len;
 
 public:
+  DoublyLinkedList() {}
+
   DoublyLinkedList(int data) {
     Node *node = new Node(data);
     head = node;
@@ -66,20 +68,33 @@ public:
 
   void setTail(int data) { tail->data = data; }
 
-  Node *getNext(Node *node) { node->next == nullptr ? node->next : nullptr; }
+  Node *getNext(Node *node) {
+    if (node->next != nullptr) {
+      return node->next;
+    }
+    return nullptr;
+  }
 
   Node *getPrevious(Node *node) {
-    node->previous == nullptr ? node->previous : nullptr;
+    if (node->previous != nullptr) {
+      return node->previous;
+    }
+    return nullptr;
   }
 
   void print_linkedlist() {
     Node *node = head;
     if (node == nullptr) {
-      std::cout << "LinkedList is empty." << std::endl;
+      std::cout << "Doubly Linked List is empty." << std::endl;
     }
     while (node != nullptr) {
       std::cout << node->data << " ";
       node = node->next;
     }
+    std::cout << std::endl;
   }
 };
+
+int main() {
+  
+}
