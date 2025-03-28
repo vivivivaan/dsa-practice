@@ -264,6 +264,39 @@ public:
     len++;
     return true;
   }
+
+  // Node *del(int index) {
+  //   if (index < 0 || index >= len) {
+  //     return nullptr;
+  //   }
+
+  //   if (index == 0)
+  //     return pop_head();
+
+  //   if (index == len - 1)
+  //     return pop_tail();
+
+  //   Node *prev = get(index - 1);
+  //   Node *current = prev->next;
+  //   Node *after = current->next;
+  //   prev->next = after;
+  //   after->previous = prev;
+  //   current->next = nullptr;
+  //   len--;
+  //   return current;
+  // }
+
+  Node *del(int index) {
+    if (index < 0 || index >= len) {
+      return nullptr;
+    }
+
+    if (index == 0)
+      return pop_head();
+
+    if (index == len - 1)
+      return pop_tail();
+  }
 };
 
 int main() {
@@ -350,8 +383,19 @@ int main() {
             << " | Tail: " << dll->getTail()->data << std::endl
             << std::endl;
 
-  std::cout << "Adding 800 to 1st node or index [0].. " << std::endl;
-  dll->insert(0, 800);
+  std::cout << "Adding 800 to 5th node or index [4].. " << std::endl;
+  dll->insert(4, 800);
+  std::cout << "The linkedlist is: ";
+  dll->print_linkedlist();
+  std::cout << std::endl;
+  std::cout << "New length of the linkedlist is " << dll->length()
+            << " | Head: " << dll->getHead()->data
+            << " | Tail: " << dll->getTail()->data << std::endl
+            << std::endl;
+
+  std::cout
+      << "Deleting the previously added 800 data in 5th node or index [4]: "
+      << dll->del(4)->data << std::endl;
   std::cout << "The linkedlist is: ";
   dll->print_linkedlist();
   std::cout << std::endl;
