@@ -110,7 +110,7 @@ public:
       return;
     }
 
-    Node *dummy(0);
+    Node *dummy = new Node(0);
     dummy->next = head;
     Node *prev = dummy;
 
