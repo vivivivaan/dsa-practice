@@ -267,7 +267,7 @@ int main() {
             << " | Tail: " << dll->getTail()->data << std::endl
             << std::endl;
 
-  std::cout << "The n-th node data or index [i] is " << dll->get(5)->data
+  std::cout << "The 6th node data or index [5] is " << dll->get(5)->data
             << std::endl;
   std::cout << "The linkedlist is: ";
   dll->print_linkedlist();
