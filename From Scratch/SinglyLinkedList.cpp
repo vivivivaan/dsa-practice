@@ -19,6 +19,8 @@ private:
   int len = 0;
 
 public:
+  LinkedList() {}
+
   LinkedList(int data) {
     Node *node = new Node(data);
     head = node;
@@ -38,7 +40,7 @@ public:
     node = nullptr;
   }
 
-  bool isEmpty() { return len == 0 ? true : false; }
+  bool isEmpty() { return len == 0; }
 
   int length() { return len; }
 
@@ -46,9 +48,27 @@ public:
 
   Node *getTail() { return tail; }
 
-  void setHead(int data) { head->data = data; }
+  void setHead(int data) {
+    if (!isEmpty()) {
+      head->data = data;
+    } else {
+      Node *node = new Node(data);
+      head = node;
+      tail = node;
+      len++;
+    }
+  }
 
-  void setTail(int data) { tail->data = data; }
+  void setTail(int data) {
+    if (!isEmpty()) {
+      tail->data = data;
+    } else {
+      Node *node = new Node(data);
+      head = node;
+      tail = node;
+      len++;
+    }
+  }
 
   void print_linkedlist() {
     Node *node = head;
@@ -292,7 +312,8 @@ int main() {
   std::cout << "The linkedlist is: ";
   ll->print_linkedlist();
   std::cout << " | Head: " << ll->getHead()->data
-            << " | Tail: " << ll->getTail()->data << std::endl
+            << " | Tail: " << ll->getTail()->data
+            << " | Length: " << ll->length() << std::endl
             << std::endl;
 
   delete ll;
