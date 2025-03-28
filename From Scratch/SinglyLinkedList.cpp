@@ -210,9 +210,7 @@ public:
     }
   }
 
-  void merge(Node *list1, Node *list2) {
-
-  }
+  void merge(Node *list1, Node *list2) {}
 };
 
 int main() {

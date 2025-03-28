@@ -93,14 +93,15 @@ public:
     Node *fast = head;
 
     for (int i = 0; i < k; i++) {
-      fast = fast->next;
       if (fast == nullptr) {
         return nullptr;
       }
+      fast = fast->next;
     }
-
-    if (fast) {
-        
+    while (fast != nullptr) {
+      slow = slow->next;
+      fast = fast->next;
     }
+    return slow;
   }
 };
