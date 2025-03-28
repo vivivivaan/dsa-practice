@@ -86,21 +86,22 @@ public:
   //   +=====================================================+
 
   void reverse() {
-    if (length <= 1)
+    if (length <= 1) {
       return;
+    }
 
     Node *current(head);
-    Node *temp(nullptr);
+    Node *dummy(nullptr);
 
     while (current != nullptr) {
-      temp = current->prev;
+      dummy = current->prev;
       current->prev = current->next;
-      current->next = temp;
+      current->next = dummy;
       current = current->prev;
     }
 
-    temp = head;
+    dummy = head;
     head = tail;
-    tail = temp;
+    tail = dummy;
   }
 };
