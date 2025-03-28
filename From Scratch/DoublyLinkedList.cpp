@@ -103,7 +103,6 @@ public:
       head = node;
       tail = node;
     } else {
-      Node *node = new Node(data);
       tail->next = node;
       node->previous = tail;
       tail = node;
@@ -163,31 +162,55 @@ public:
   }
 
   Node *get(int index) {
-    if (index < 0 || index >= len) {
+    if (index < 0 || index >= len)
       return nullptr;
-    } else if (index == 0) {
-      return head;
-    } else if (index == len - 1) {
-      return tail;
-    } else {
-      Node *temp;
-      int mid = len / 2 + 1;
 
-      if (len < mid) {
-        temp = head;
-        for (int i = 0; i < index; i++) {
-          temp = temp->next;
-        }
-        return temp;
-      } else {
-        temp = tail;
-        for (int i = len - 1; i > index; i--) {
-          temp = temp->previous;
-        }
-        return temp;
+    if (index == 0)
+      return head;
+
+    if (index == len - 1)
+      return tail;
+
+    Node *current;
+    if (index < len / 2) {
+      current = head;
+      for (int i = 0; i < index; i++) {
+        current = current->next;
+      }
+    } else {
+      current = tail;
+      for (int i = len - 1; i > index; i--) {
+        current = current->previous;
       }
     }
+    return current;
   }
+
+  //   Node *get(int index) {
+  //     if (index < 0 || index >= len)
+  //       return nullptr;
+
+  //     if (index == 0)
+  //       return head;
+
+  //     if (index == len - 1)
+  //       return tail;
+
+  //     Node *current;
+  //     int mid = len / 2 + 1;
+  //     if (index < mid) {
+  //       current = head;
+  //       for (int i = 0; i < index; i++) {
+  //         current = current->next;
+  //       }
+  //     } else {
+  //       current = tail;
+  //       for (int i = len - 1; i > index; i--) {
+  //         current = current->previous;
+  //       }
+  //     }
+  //     return current;
+  //   }
 };
 
 int main() {
@@ -244,7 +267,7 @@ int main() {
             << " | Tail: " << dll->getTail()->data << std::endl
             << std::endl;
 
-  std::cout << "The n-th node data or index [i] is " << dll->get(6)->data
+  std::cout << "The n-th node data or index [i] is " << dll->get(5)->data
             << std::endl;
   std::cout << "The linkedlist is: ";
   dll->print_linkedlist();
