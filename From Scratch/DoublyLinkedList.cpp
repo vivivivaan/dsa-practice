@@ -211,6 +211,34 @@ public:
   //     }
   //     return current;
   //   }
+
+  bool set(int index, int data) {
+    Node *temp = get(index);
+    if (temp) {
+      temp->data = data;
+      return true;
+    }
+    return false;
+  }
+
+  //   bool set(int index, int data) {
+  //     if (index == 0) {
+  //       setHead(data);
+  //       return true;
+  //     }
+
+  //     if (index == len - 1) {
+  //       setTail(data);
+  //       return true;
+  //     }
+
+  //     Node *temp = get(index);
+  //     if (temp) {
+  //       temp->data = data;
+  //       return true;
+  //     }
+  //     return false;
+  //   }
 };
 
 int main() {
@@ -267,8 +295,18 @@ int main() {
             << " | Tail: " << dll->getTail()->data << std::endl
             << std::endl;
 
-  std::cout << "The 6th node data or index [5] is " << dll->get(5)->data
+  std::cout << "The 6th node data or index [5] is " << dll->get(1)->data
             << std::endl;
+  std::cout << "The linkedlist is: ";
+  dll->print_linkedlist();
+  std::cout << std::endl;
+  std::cout << "New length of the linkedlist is " << dll->length()
+            << " | Head: " << dll->getHead()->data
+            << " | Tail: " << dll->getTail()->data << std::endl
+            << std::endl;
+
+  std::cout << "Updating 3rd node data or index [2] data.." << std::endl;
+  dll->set(3, 450);
   std::cout << "The linkedlist is: ";
   dll->print_linkedlist();
   std::cout << std::endl;
