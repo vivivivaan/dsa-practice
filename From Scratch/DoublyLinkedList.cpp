@@ -296,6 +296,14 @@ public:
 
     if (index == len - 1)
       return pop_tail();
+
+    Node *temp = get(index);
+    temp->previous->next = temp->next;
+    temp->next->previous = temp->previous;
+    temp->previous = nullptr;
+    temp->next = nullptr;
+    len--;
+    return temp;
   }
 };
 
