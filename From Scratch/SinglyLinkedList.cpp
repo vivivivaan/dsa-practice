@@ -287,13 +287,13 @@ int main() {
   ll->print_linkedlist();
   std::cout << std::endl << std::endl;
 
-  std::cout << "Updating 3rd node data or index [2] data.." << std::endl;
+  std::cout << "Updating 4th node data or index [3] data.." << std::endl;
   ll->set(3, 350);
   std::cout << "The linkedlist is: ";
   ll->print_linkedlist();
   std::cout << std::endl << std::endl;
 
-  std::cout << "Adding 750 to 4th node or index [3].. " << std::endl;
+  std::cout << "Adding 750 to 5th node or index [4].. " << std::endl;
   ll->insert(4, 750);
   std::cout << "The linkedlist is: ";
   ll->print_linkedlist();

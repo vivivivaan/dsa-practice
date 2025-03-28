@@ -239,6 +239,31 @@ public:
   //     }
   //     return false;
   //   }
+
+  bool insert(int index, int data) {
+    if (index < 0 || index > len)
+      return false;
+
+    if (index == 0) {
+      prepend(data);
+      return true;
+    }
+
+    if (index == len) {
+      append(data);
+      return true;
+    }
+
+    Node *node = new Node(data);
+    Node *before = get(index - 1);
+    Node *after = before->next;
+    node->previous = before;
+    node->next = after;
+    before->next = node;
+    after->previous = node;
+    len++;
+    return true;
+  }
 };
 
 int main() {
@@ -307,6 +332,26 @@ int main() {
 
   std::cout << "Updating 4th node data or index [3] data.." << std::endl;
   dll->set(3, 450);
+  std::cout << "The linkedlist is: ";
+  dll->print_linkedlist();
+  std::cout << std::endl;
+  std::cout << "New length of the linkedlist is " << dll->length()
+            << " | Head: " << dll->getHead()->data
+            << " | Tail: " << dll->getTail()->data << std::endl
+            << std::endl;
+
+  std::cout << "Adding 750 to 5th node or index [4].. " << std::endl;
+  dll->insert(4, 750);
+  std::cout << "The linkedlist is: ";
+  dll->print_linkedlist();
+  std::cout << std::endl;
+  std::cout << "New length of the linkedlist is " << dll->length()
+            << " | Head: " << dll->getHead()->data
+            << " | Tail: " << dll->getTail()->data << std::endl
+            << std::endl;
+
+  std::cout << "Adding 800 to 1st node or index [0].. " << std::endl;
+  dll->insert(0, 800);
   std::cout << "The linkedlist is: ";
   dll->print_linkedlist();
   std::cout << std::endl;
