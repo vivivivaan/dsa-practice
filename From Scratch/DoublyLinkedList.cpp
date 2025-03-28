@@ -305,7 +305,7 @@ int main() {
             << " | Tail: " << dll->getTail()->data << std::endl
             << std::endl;
 
-  std::cout << "Updating 3rd node data or index [2] data.." << std::endl;
+  std::cout << "Updating 4th node data or index [3] data.." << std::endl;
   dll->set(3, 450);
   std::cout << "The linkedlist is: ";
   dll->print_linkedlist();
