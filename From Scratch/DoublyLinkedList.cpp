@@ -305,6 +305,8 @@ public:
     len--;
     return temp;
   }
+
+  void mere(Node *list1, Node *list2) {}
 };
 
 int main() {
