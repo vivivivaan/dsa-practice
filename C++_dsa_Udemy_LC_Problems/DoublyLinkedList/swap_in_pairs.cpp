@@ -89,30 +89,34 @@ public:
   //   +=====================================================+
 
   void swapPairs() {
-    Node dummyNode(0);
-    dummyNode.next = head;
-    Node *previousNode = &dummyNode;
+    Node dummy(0);
+    dummy.next = head;
+    Node *pre = &dummy;
 
     while (head != nullptr && head->next != nullptr) {
-      Node *firstNode = head;
-      Node *secondNode = head->next;
+      Node *first = head;
+      Node *second = head->next;
 
-      previousNode->next = secondNode;
-      firstNode->next = secondNode->next;
-      secondNode->next = firstNode;
+      // Update next
+      pre->next = second;
+      first->next = second->next;
+      second->next = first;
 
-      secondNode->prev = previousNode;
-      firstNode->prev = secondNode;
-      if (firstNode->next != nullptr) {
-        firstNode->next->prev = firstNode;
+      // Update prev
+      second->prev = pre;
+      first->prev = second;
+
+      if (first->next != nullptr) {
+        first->next->prev = first;
       }
 
-      head = firstNode->next;
-      previousNode = firstNode;
+      head = first->next;
+      pre = first;
     }
 
-    head = dummyNode.next;
-    if (head)
+    head = dummy.next;
+    if (head) {
       head->prev = nullptr;
+    }
   }
 };
