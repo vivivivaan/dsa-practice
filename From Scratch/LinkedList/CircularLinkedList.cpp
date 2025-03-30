@@ -27,6 +27,9 @@ public:
   }
 
   ~CircularLinkedList() {
+    if (head == nullptr)
+      return;
+
     Node *node = head;
     while (node != nullptr) {
       Node *temp = node;
