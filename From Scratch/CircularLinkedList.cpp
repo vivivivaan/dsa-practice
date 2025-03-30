@@ -110,9 +110,56 @@ public:
     len++;
   }
 
-  //   Node *pop_tail(int data) {}
+  Node *pop_tail() {
+    if (len == 0) {
+      return nullptr;
+    }
 
-  //   Node *pop_head(int data) {}
+    Node *end = tail;
+
+    if (len == 1) {
+      head = nullptr;
+      tail = nullptr;
+    } else {
+      Node *temp = head;
+
+      //   for (int i = 0; i < len - 2; i++) {
+      //     temp = temp->next;
+      //   }
+
+      while (temp->next != end) {
+        temp = temp->next;
+      }
+
+      if (temp->next == end) {
+        temp->next = head;
+        tail = temp;
+        end->next = nullptr;
+      }
+    }
+
+    len--;
+    return end;
+  }
+
+  Node *pop_head() {
+    if (len == 0) {
+      return nullptr;
+    }
+
+    Node *begin = head;
+
+    if (len == 1) {
+      head = nullptr;
+      tail = nullptr;
+    } else {
+      head = begin->next;
+      tail->next = head;
+      begin->next = nullptr;
+    }
+    len--;
+    return begin;
+  }
 };
 
 int main() {
@@ -125,20 +172,40 @@ int main() {
   std::cout << std::endl;
   std::cout << "The linkedlist is: ";
   cll->print_linkedlist();
-  std::cout << "Length of the Linkedlist is " << cll->length() << std::endl
+  std::cout << "Length of the Linkedlist is " << cll->length()
+            << " | Head: " << cll->getHead()->data
+            << " | Tail: " << cll->getTail()->data << std::endl
             << std::endl;
 
   std::cout << "Appending 800 to the list and the new list is..";
   cll->append(800);
   std::cout << std::endl;
   cll->print_linkedlist();
-  std::cout << "New length of the linkedlist is " << cll->length() << std::endl
+  std::cout << "Length of the Linkedlist is " << cll->length()
+            << " | Head: " << cll->getHead()->data
+            << " | Tail: " << cll->getTail()->data << std::endl
             << std::endl;
 
   std::cout << "Prepending 6000 to the list and the new list is..";
   cll->prepend(6000);
   std::cout << std::endl;
   cll->print_linkedlist();
-  std::cout << "New length of the linkedlist is " << cll->length() << std::endl
+  std::cout << "Length of the Linkedlist is " << cll->length()
+            << " | Head: " << cll->getHead()->data
+            << " | Tail: " << cll->getTail()->data << std::endl
+            << std::endl;
+
+  std::cout << "Deleted the tail: " << cll->pop_tail()->data << std::endl;
+  std::cout << "The linkedlist is: ";
+  cll->print_linkedlist();
+  std::cout << "New length of the linkedlist is " << cll->length()
+            << " and new tail is " << cll->getTail()->data << std::endl
+            << std::endl;
+
+  std::cout << "Deleted the head: " << cll->pop_head()->data << std::endl;
+  std::cout << "The linkedlist is: ";
+  cll->print_linkedlist();
+  std::cout << "New length of the linkedlist is " << cll->length()
+            << " and new head is " << cll->getHead()->data << std::endl
             << std::endl;
 }
