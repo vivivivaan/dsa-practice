@@ -30,29 +30,21 @@ public:
   }
 
   ~DoublyCircularLinkedList() {
-    Node *node1 = head;
-    Node *node2 = tail;
+    if (head == nullptr)
+      return;
 
-    // Traverse from both ends and delete nodes until they meet or cross
-    while (node1 != nullptr && node2 != nullptr && node1 != node2) {
-      Node *temp1 = node1;
-      Node *temp2 = node2;
-
-      node1 = node1->next; // Move node1 forward (head to tail)
-      node2 = node2->prev; // Move node2 backward (tail to head)
-
-      delete temp1; // Delete node from the head side
-      delete temp2; // Delete node from the tail side
+    Node *current = head;
+    while (current) {
+      Node *next = current->next;
+      delete current;
+      current = next;
+      if (current == head)
+        break;
     }
 
-    // If there's one node left in the middle (node1 == node2), delete it
-    if (node1 == node2 && node1 != nullptr) {
-      delete node1;
-    }
-
-    // Reset head and tail to nullptr after destruction
     head = nullptr;
     tail = nullptr;
+    len = 0;
   }
 
   int getLen() { return len; }
