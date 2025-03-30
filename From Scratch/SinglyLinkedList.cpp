@@ -16,7 +16,7 @@ private:
   Node *head;
   Node *tail;
   int data;
-  int len = 0;
+  int len;
 
 public:
   LinkedList() {}

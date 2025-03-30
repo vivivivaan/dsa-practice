@@ -1,0 +1,144 @@
+#include <iostream>
+
+class Node {
+public:
+  int data;
+  Node *next;
+  Node(int data) {
+    this->data = data;
+    next = this;
+  }
+};
+
+class CircularLinkedList {
+private:
+  Node *head;
+  Node *tail;
+  int len;
+
+public:
+  CircularLinkedList() {}
+
+  CircularLinkedList(int data) {
+    Node *node = new Node(data);
+    head = node;
+    tail = node;
+    len += 1;
+  }
+
+  ~CircularLinkedList() {
+    Node *node = head;
+    while (node != nullptr) {
+      Node *temp = node;
+      node = node->next;
+      delete temp;
+    }
+    head = nullptr;
+    tail = nullptr;
+    node = nullptr;
+  }
+
+  bool isEmpty() { return len == 0; }
+
+  int length() { return len; }
+
+  Node *getHead() { return head; }
+
+  Node *getTail() { return tail; }
+
+  void setHead(int data) {
+    if (!isEmpty()) {
+      head->data = data;
+    } else {
+      Node *node = new Node(data);
+      head = node;
+      tail = node;
+      len++;
+    }
+  }
+
+  void setTail(int data) {
+    if (!isEmpty()) {
+      tail->data = data;
+    } else {
+      Node *node = new Node(data);
+      head = node;
+      tail = node;
+      len++;
+    }
+  }
+
+  void print_linkedlist() {
+    if (len == 0) {
+      std::cout << "CLL is empty.. " << std::endl;
+      return;
+    }
+    Node *itr = head;
+    while (itr != nullptr) {
+      std::cout << itr->data << " ";
+      itr = itr->next;
+      if (itr == head) {
+        std::cout << itr->data << std::endl;
+        break;
+      }
+    }
+  }
+
+  void append(int data) {
+    Node *node = new Node(data);
+    if (len == 0) {
+      head = node;
+      tail = node;
+    } else {
+      tail->next = node;
+      node->next = head;
+      tail = node;
+    }
+    len++;
+  }
+
+  void prepend(int data) {
+    Node *node = new Node(data);
+    if (len == 0) {
+      head = node;
+      tail = node;
+    } else {
+      tail->next = node;
+      node->next = head;
+      head = node;
+    }
+    len++;
+  }
+
+  //   Node *pop_tail(int data) {}
+
+  //   Node *pop_head(int data) {}
+};
+
+int main() {
+  CircularLinkedList *cll = new CircularLinkedList(100);
+
+  for (int i = 2; i <= 7; i++) {
+    cll->append(i * 100);
+  }
+
+  std::cout << std::endl;
+  std::cout << "The linkedlist is: ";
+  cll->print_linkedlist();
+  std::cout << "Length of the Linkedlist is " << cll->length() << std::endl
+            << std::endl;
+
+  std::cout << "Appending 800 to the list and the new list is..";
+  cll->append(800);
+  std::cout << std::endl;
+  cll->print_linkedlist();
+  std::cout << "New length of the linkedlist is " << cll->length() << std::endl
+            << std::endl;
+
+  std::cout << "Prepending 6000 to the list and the new list is..";
+  cll->prepend(6000);
+  std::cout << std::endl;
+  cll->print_linkedlist();
+  std::cout << "New length of the linkedlist is " << cll->length() << std::endl
+            << std::endl;
+}

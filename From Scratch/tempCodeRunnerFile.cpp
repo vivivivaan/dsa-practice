@@ -1,1 +1,3 @@
-temp->next->previous = temp->previous;
+Node *pop_tail(int data) {}
+
+//   Node *pop_head(int data) {}
