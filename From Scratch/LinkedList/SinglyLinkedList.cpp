@@ -430,7 +430,7 @@ int main() {
   std::cout << " | Head: " << merged.getHead()->data
             << " | Tail: " << merged.getTail()->data
             << " | Length: " << merged.length() << std::endl;
-  std::cout << "The indexed elements post merger are: ";
+  std::cout << "The indexed elements post merger are: " << std::endl;
   for (int i = 0; i < merged.length(); i++)
     std::cout << "[" << i << "] => " << merged.get(i)->data << std::endl;
   std::cout << "7th element OR 7th node OR element at index [6] is: "

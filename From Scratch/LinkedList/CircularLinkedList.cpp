@@ -160,6 +160,10 @@ public:
     len--;
     return begin;
   }
+
+  // Many other functions such as:
+  // get, set, insert, delete, merge reverse, and more
+  // are almost same as singly linked lists.
 };
 
 int main() {
