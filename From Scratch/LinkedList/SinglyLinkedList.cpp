@@ -1,4 +1,5 @@
 #include <iostream>
+#include <stdexcept>
 
 class Node {
 public:
@@ -230,7 +231,106 @@ public:
     }
   }
 
-  void merge(Node *list1, Node *list2) {}
+  void merge(LinkedList *list1, LinkedList *list2) {
+    // Prevent Self-merge
+    if (this == list1 || this == list2)
+      throw std::runtime_error("Cannot merge a list with itself.");
+
+    if (list1->isEmpty()) {
+      this->head = list2->head;
+      this->tail = list2->tail;
+      this->len = list2->len;
+    } else if (list2->isEmpty()) {
+      this->head = list1->head;
+      this->tail = list1->tail;
+      this->len = list1->len;
+    } else {
+      this->head = list1->head;
+      list1->tail->next = list2->head;
+      this->tail = list2->tail;
+      this->len = list1->len + list2->len;
+    }
+    list1->head = list1->tail = nullptr;
+    list1->len = 0;
+    list2->head = list2->tail = nullptr;
+    list2->len = 0;
+  }
+
+  // void merge(LinkedList *list1, LinkedList *list2) {
+  // // Prevent Self-merge
+  // if (this == list1 || this == list2)
+  //   throw std::runtime_error("Cannot merge a list with itself.");
+  //
+  //   Node *h1 = list1->head;
+  //   Node *h2 = list2->head;
+  //   Node *t1 = list1->tail;
+  //   Node *t2 = list2->tail;
+  //   int l1 = list1->len;
+  //   int l2 = list2->len;
+
+  //   if (list1->isEmpty()) {
+  //     this->head = h2;
+  //     this->tail = t2;
+  //     this->len = l2;
+  //   } else if (list2->isEmpty()) {
+  //     this->head = h1;
+  //     this->tail = t2;
+  //     this->len = l2;
+  //   } else {
+  //     this->head = h1;
+  //     t1->next = h2;
+  //     this->tail = t2;
+  //     this->len = l1 + l2;
+  //   }
+
+  //   list1->head = list1->tail = nullptr;
+  //   list1->len = 0;
+  //   list2->head = list2->tail = nullptr;
+  //   list2->len = 0;
+  // }
+
+  // void merge(LinkedList *list1, LinkedList *list2) {
+  // // Prevent Self-merge
+  // if (this == list1 || this == list2)
+  //   throw std::runtime_error("Cannot merge a list with itself.");
+  //
+  //   if (list1->isEmpty()) {
+  //     this->head = list2->head;
+  //     this->tail = list2->tail;
+  //     this->len = list2->len;
+  //   } else if (list2->isEmpty()) {
+  //     this->head = list1->head;
+  //     this->tail = list1->tail;
+  //     this->len = list1->len;
+  //   } else {
+  //     LinkedList *res = new LinkedList();
+
+  //     Node *h1 = list1->head;
+  //     Node *h2 = list2->head;
+
+  //     while (h1 != nullptr) {
+  //       res->append(h1->data);
+  //       h1 = h1->next;
+  //     }
+
+  //     while (h2 != nullptr) {
+  //       res->append(h2->data);
+  //       h2 = h2->next;
+  //     }
+
+  //     this->head = res->head;
+  //     this->tail = res->tail;
+  //     this->len = res->len;
+
+  //     res->head = res->tail = nullptr;
+  //     delete res;
+  //   }
+
+  //   list1->head = list1->tail = nullptr;
+  //   list1->len = 0;
+  //   list2->head = list2->tail = nullptr;
+  //   list2->len = 0;
+  // }
 };
 
 int main() {
@@ -316,5 +416,26 @@ int main() {
             << " | Length: " << ll->length() << std::endl
             << std::endl;
 
+  LinkedList *ll2 = new LinkedList(1);
+
+  for (int i = 1; i <= 7; i++)
+    ll2->append(i * 10);
+
+  LinkedList merged;
+
+  std::cout << "Merging two linked lists.." << std::endl;
+  merged.merge(ll, ll2);
+  std::cout << "The linkedlist is: ";
+  merged.print_linkedlist();
+  std::cout << " | Head: " << merged.getHead()->data
+            << " | Tail: " << merged.getTail()->data
+            << " | Length: " << merged.length() << std::endl;
+  std::cout << "The indexed elements post merger are: ";
+  for (int i = 0; i < merged.length(); i++)
+    std::cout << "[" << i << "] => " << merged.get(i)->data << std::endl;
+  std::cout << "7th element OR 7th node OR element at index [6] is: "
+            << merged.get(6)->data << std::endl;
+
   delete ll;
+  delete ll2;
 }
