@@ -290,10 +290,10 @@ public:
   // }
 
   // void merge(LinkedList *list1, LinkedList *list2) {
-  // // Prevent Self-merge
-  // if (this == list1 || this == list2)
-  //   throw std::runtime_error("Cannot merge a list with itself.");
-  //
+  //   // Prevent Self-merge
+  //   if (this == list1 || this == list2)
+  //     throw std::runtime_error("Cannot merge a list with itself.");
+
   //   if (list1->isEmpty()) {
   //     this->head = list2->head;
   //     this->tail = list2->tail;
