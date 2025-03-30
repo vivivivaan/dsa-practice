@@ -192,6 +192,10 @@ public:
     dcl2->head = dcl2->tail = nullptr;
     dcl2->len = 0;
   }
+
+  // Many other functions such as:
+  // get, set, insert, delete, merge, reverse, and more
+  // are almost same as other linked lists.
 };
 
 int main() {

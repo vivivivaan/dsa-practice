@@ -165,8 +165,8 @@ public:
   }
 
   // Many other functions such as:
-  // get, set, insert, delete, merge reverse, and more
-  // are almost same as singly linked lists.
+  // get, set, insert, delete, merge, reverse, and more
+  // are almost same as other linked lists.
 };
 
 int main() {
