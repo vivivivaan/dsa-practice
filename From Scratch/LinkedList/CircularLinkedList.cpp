@@ -17,7 +17,11 @@ private:
   int len;
 
 public:
-  CircularLinkedList() {}
+  CircularLinkedList() {
+    head = nullptr;
+    tail = nullptr;
+    len = 0;
+  }
 
   CircularLinkedList(int data) {
     Node *node = new Node(data);

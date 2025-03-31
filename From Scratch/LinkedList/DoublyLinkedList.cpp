@@ -20,7 +20,11 @@ private:
   int len;
 
 public:
-  DoublyLinkedList() {}
+  DoublyLinkedList() {
+    head = nullptr;
+    tail = nullptr;
+    len = 0;
+  }
 
   DoublyLinkedList(int data) {
     Node *node = new Node(data);

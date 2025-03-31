@@ -20,7 +20,11 @@ private:
   int len;
 
 public:
-  LinkedList() {}
+  LinkedList() {
+    head = nullptr;
+    tail = nullptr;
+    len = 0;
+  }
 
   LinkedList(int data) {
     Node *node = new Node(data);

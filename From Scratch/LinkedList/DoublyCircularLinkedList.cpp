@@ -20,7 +20,11 @@ private:
   int len;
 
 public:
-  DoublyCircularLinkedList() {}
+  DoublyCircularLinkedList() {
+    head = nullptr;
+    tail = nullptr;
+    len = 0;
+  }
 
   DoublyCircularLinkedList(int data) {
     Node *node = new Node(data);
