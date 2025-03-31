@@ -34,9 +34,6 @@ public:
   }
 
   ~DoublyCircularLinkedList() {
-    if (head == nullptr)
-      return;
-
     Node *current = head;
     while (current) {
       Node *next = current->next;
@@ -45,7 +42,6 @@ public:
       if (current == head)
         break;
     }
-
     head = nullptr;
     tail = nullptr;
     len = 0;

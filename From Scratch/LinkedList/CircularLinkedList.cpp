@@ -31,18 +31,14 @@ public:
   }
 
   ~CircularLinkedList() {
-    if (head == nullptr)
-      return;
-
-    Node *node = head;
-    while (node != nullptr) {
-      Node *temp = node;
+    while (head != nullptr) {
+      Node *node = node;
       node = node->next;
-      delete temp;
+      delete node;
     }
     head = nullptr;
     tail = nullptr;
-    node = nullptr;
+    len = 0;
   }
 
   bool isEmpty() { return len == 0; }
