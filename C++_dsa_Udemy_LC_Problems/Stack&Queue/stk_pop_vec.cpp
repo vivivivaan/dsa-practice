@@ -10,6 +10,12 @@ private:
 public:
   vector<int> &getStackVector() { return stackVector; }
 
+  //   void printStack() {
+  //     for (int i = stackVector.size() - 1; i >= 0; i--) {
+  //       cout << stackVector[i] << endl;
+  //     }
+  //   }
+
   void printStack() {
     // for (int i = stackVector.size() - 1; i >= 0; i--) {
     //   cout << stackVector[i] << endl;
@@ -32,28 +38,30 @@ public:
 
   int size() { return stackVector.size(); }
 
+  void push(int value) { stackVector.push_back(value); }
+
   //   +=====================================================+
   //   |                 WRITE YOUR CODE HERE                |
   //   | Description:                                        |
-  //   | - This method adds a new element to the top         |
-  //   |   of the stack (push).                              |
-  //   | - Inserts 'value' to the end of 'stackVector'.      |
+  //   | - This method removes the top element               |
+  //   |   from the stack (pop).                             |
+  //   | - Updates 'stackVector' by removing last element.   |
   //   | - Return type: void                                 |
   //   |                                                     |
   //   | Tips:                                               |
-  //   | - Use vector's push_back() method to add            |
-  //   |   the value to the end of the vector.               |
+  //   | - Use vector's pop_back() to remove the element     |
+  //   |   from the end.                                     |
+  //   | - Make sure to check if the stack is empty          |
+  //   |   before trying to pop.                             |
   //   | - No return value is needed.                        |
   //   | - Check output from Test.cpp in "User logs".        |
   //   +=====================================================+
 
-  void push(int value) { stackVector.push_back(value); }
-
-  // void pop() {
-  //   if (!isEmpty()) {
-  //     stackVector.pop_back();
-  //   }
-  // }
+  void pop() {
+    if (!isEmpty()) {
+      stackVector.pop_back();
+    }
+  }
 };
 
 int main() {
@@ -80,14 +88,14 @@ int main() {
 
   cout << endl;
 
-  // cout << "Popping the top or last element: " << endl << endl;
+  cout << "Popping the top or last element: " << endl << endl;
 
-  // stk->pop();
+  stk->pop();
 
-  // cout << "Post pop size: " << stk->size() << endl << endl;
+  cout << "Post pop size: " << stk->size() << endl << endl;
 
-  // cout << "TOS: " << stk->peek() << endl << endl;
+  cout << "TOS: " << stk->peek() << endl << endl;
 
-  // cout << "The elements are: " << std::endl;
-  // stk->printStack();
+  cout << "The elements are: " << std::endl;
+  stk->printStack();
 }
