@@ -28,12 +28,12 @@ public:
   }
 
   ~Stack() {
-    Node *temp = top;
-    while (temp != nullptr) {
-      Node *node = temp;
-      temp = temp->next;
-      delete node;
+    while (top != nullptr) {
+      Node *node = top;
+      top = top->next;
+      delete top;
     }
+    top = nullptr;
     height = 0;
   }
 
