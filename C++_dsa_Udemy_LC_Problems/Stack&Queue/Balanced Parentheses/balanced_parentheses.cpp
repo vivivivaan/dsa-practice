@@ -22,8 +22,17 @@ bool isBalancedParentheses(const string &parentheses) {
   //   | - Check output from Test.cpp in "User logs".        |
   //   +=====================================================+
 
-  stack<char> pr;
+  stack<char> chs;
 
-  for (char c : parentheses) {
+  for (auto c : parentheses) {
+    if (!chs.empty()) {
+      char ch = chs.top();
+      if (c == '(' && ch == ')') {
+        chs.pop();
+        continue;
+      }
+    }
+    chs.push(c);
   }
+  return chs.empty();
 }
