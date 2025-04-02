@@ -1,6 +1,6 @@
 #include "SortStack.h"
 #include <algorithm>
-#include <functional>
+#include <stack>
 #include <vector>
 
 void sortStack(stack<int> &inputStack) {
@@ -22,16 +22,22 @@ void sortStack(stack<int> &inputStack) {
   //   | - Check output from Test.cpp in "User logs".         |
   //   +======================================================+
 
-  std::vector<int> nums;
+  stack<int> additionalStack;
 
   while (!inputStack.empty()) {
-    nums.push_back(inputStack.top());
+    int temp = inputStack.top();
     inputStack.pop();
+
+    while (!additionalStack.empty() && additionalStack.top() > temp) {
+      inputStack.push(additionalStack.top());
+      additionalStack.pop();
+    }
+
+    additionalStack.push(temp);
   }
 
-  std::sort(nums.begin(), nums.end());
-
-  for (auto itr = nums.begin(); itr != nums.end(); itr++) {
-    inputStack.push(*itr);
+  while (!additionalStack.empty()) {
+    inputStack.push(additionalStack.top());
+    additionalStack.pop();
   }
 }
